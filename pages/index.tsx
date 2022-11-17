@@ -1,6 +1,7 @@
 import {EXPIRE_LIMIT, getToken, tokenCache} from "./api/tokenCache";
 import {getTopTen} from "./api/top10";
 import {Streamer} from "./interfaces/Streamer";
+import {GetServerSideProps, GetServerSidePropsContext} from "next";
 
 export default function Home({data, imgs}:any) {
   return (
@@ -19,8 +20,13 @@ export default function Home({data, imgs}:any) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({req,res}:GetServerSidePropsContext) {
     // Fetch data from external API
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=180, stale-while-revalidate=180'
+    )
+
     const TIME_PASSED = new Date().getTime() - tokenCache.timestamp.getTime()
 
     if(!tokenCache.token ||  (TIME_PASSED > EXPIRE_LIMIT))
