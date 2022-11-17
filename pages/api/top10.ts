@@ -7,7 +7,7 @@ type Data = {
 }
 
 export const getTopTen = async () =>{
-    const res = await fetch('https://api.twitch.tv/helix/streams?language=it',{
+    const res: Response = await fetch('https://api.twitch.tv/helix/streams?language=it',{
         method: "GET",
         headers: {
             "Authorization": `Bearer ${tokenCache.token}`,
