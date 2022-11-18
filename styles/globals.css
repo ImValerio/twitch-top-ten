@@ -19,17 +19,29 @@ h1,h2{
   margin: 0;
 }
 
+.title{
+  font-size: 5em;
+  letter-spacing: 0.2em;
+  text-shadow: 4px 1px 1px red;
+}
+
 .container{
+  width: 100%;
   display: flex;
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-  gap: 1em;
-  margin: 1em;
+  gap: 2em;
+  padding: 1em;
 }
 
 .streamer{
   text-align: center;
+  transition: all 0.5s;
+}
+
+.streamer:hover{
+  transform: scale(1.1);
 }
 
 .streamer:first-child > img {
@@ -57,5 +69,10 @@ h1,h2{
   body {
     color: white;
     background: black;
+  }
+}
+@media(max-width: 800px){
+  .streamer > img {
+    width: 50%;
   }
 }
