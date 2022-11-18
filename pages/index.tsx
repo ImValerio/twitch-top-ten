@@ -6,28 +6,26 @@ import {DateTime} from "ts-luxon";
 import {useEffect, useState} from "react";
 
 export default function Home({data, imgs}:any) {
+    const [timePassed,setTimePassed] = useState(new Map());
+    const leaderBoardEmoji = [
+        '🥇', '🥈', '🥉'
+    ]
+    useEffect(()=>{
+           calculateAndSetTime();
+           const interval = setInterval(calculateAndSetTime, 1000);
+           return () => clearInterval(interval);
 
-    const [timePassed,setTimePassed] = useState(new Map())
+           },[]
+    )
 
-   useEffect(()=>{
-       const newMap = new Map();
-       data.forEach((streamer:Streamer)=> {
-             newMap.set(streamer.user_id,getTimePassed(streamer))
-       })
+    const calculateAndSetTime = ()=>{
+        const newMap = new Map();
+        data.forEach((streamer:Streamer)=> {
+            newMap.set(streamer.user_id,getTimePassed(streamer))
+        })
 
-       setTimePassed(newMap)
-       const interval = setInterval(() => {
-           const newMap = new Map();
-           data.forEach((streamer:Streamer)=> {
-               newMap.set(streamer.user_id,getTimePassed(streamer))
-           })
-
-           setTimePassed(newMap)
-       }, 1000);
-       return () => clearInterval(interval);
-
-   },[])
-
+        setTimePassed(newMap)
+    }
     const getTimePassed = (streamer:Streamer) => {
         const endDate = DateTime.now()
         const startedAtMillis = new Date(streamer.started_at).getTime()
@@ -45,7 +43,7 @@ export default function Home({data, imgs}:any) {
                               <img src={imgs[streamer.user_id]}
                                    alt={`${streamer.user_login}'s profile image`}/>
 
-                              <h1 className='position'>{i+1}</h1>
+                              <h1 className='position'>{leaderBoardEmoji[i] ? leaderBoardEmoji[i] : `${i+1}`}</h1>
                           </div>
 
                           <a href={`https://twitch.tv/${streamer.user_login}`} target="_blank"
