@@ -14,6 +14,41 @@ a {
 * {
   box-sizing: border-box;
 }
+h1,h2{
+  padding: 0;
+  margin: 0;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin: 1em;
+}
+
+.streamer{
+  text-align: center;
+}
+
+.streamer:first-child > img {
+  box-shadow: 1px 3px 3px 3px gold;
+}
+
+.streamer:nth-child(2) > img {
+  box-shadow: 1px 3px 3px 3px silver;
+}
+.streamer:nth-child(3) > img {
+   box-shadow: 1px 3px 3px 3px saddlebrown;
+ }
+
+.info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 @media (prefers-color-scheme: dark) {
   html {

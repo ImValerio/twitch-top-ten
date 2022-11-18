@@ -1,17 +1,41 @@
 import {EXPIRE_LIMIT, getToken, tokenCache} from "./api/tokenCache";
 import {getTopTen} from "./api/top10";
 import {Streamer} from "./interfaces/Streamer";
-import {GetServerSideProps, GetServerSidePropsContext} from "next";
+import {GetServerSidePropsContext} from "next";
+import {DateTime} from "ts-luxon";
+import {useEffect, useState} from "react";
 
 export default function Home({data, imgs}:any) {
+
+    const endDate = DateTime.now()
+    const [timePassed,setTimePassed] = useState(new Map())
+
+   useEffect(()=>{
+       const newMap = new Map();
+       data.forEach((streamer:Streamer)=> {
+             newMap.set(streamer.user_id,getTimePassed(streamer))
+       })
+
+       setTimePassed(newMap)
+   },[])
+
+    const getTimePassed = (streamer:Streamer) => {
+        const startedAtMillis = new Date(streamer.started_at).getTime()
+        return endDate.diff(DateTime.fromMillis(startedAtMillis),['hours'])
+            .toHuman({unitDisplay:'short'})
+    }
   return (
-      <div>
+      <div className='container'>
           {data.map((streamer: Streamer,i: number) => {
               return (
-                  <div key={i}>
-                      <img src={imgs[streamer.user_id]} />
-                      <a href={`https://twitch.tv/${streamer.user_login}`} target="_blank" >
-                          <h1>{i+1}) {streamer.user_name} - {streamer.viewer_count}</h1>
+                  <div className='streamer' key={i} >
+                      <img src={imgs[streamer.user_id]}
+                           alt={`${streamer.user_login}'s profile image`}/>
+                      <a href={`https://twitch.tv/${streamer.user_login}`} target="_blank"
+                      className='info'>
+                          <h1>{streamer.user_name} </h1>
+                          <h2>👥️{streamer.viewer_count}</h2>
+                          <p>{timePassed.get(streamer.user_id)}</p>
                       </a>
                   </div>
               )
@@ -24,7 +48,7 @@ export async function getServerSideProps({req,res}:GetServerSidePropsContext) {
     // Fetch data from external API
     res.setHeader(
         'Cache-Control',
-        'public, s-maxage=180, stale-while-revalidate=180'
+        'public, s-maxage=180, stale-while-revalidate=300'
     )
 
     const TIME_PASSED = new Date().getTime() - tokenCache.timestamp.getTime()
@@ -40,9 +64,9 @@ export async function getServerSideProps({req,res}:GetServerSidePropsContext) {
     data.forEach((streamer:Streamer) => idList.add(streamer.user_id))
 
     const imgsMap = await getProfileImgByIDS(idList);
-    console.log(imgsMap)
     // Pass data to the page via props
     return { props: { data, imgs: Object.fromEntries(imgsMap) } }
+
 }
 
 
