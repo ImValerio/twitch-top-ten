@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
 
 export default function Home({data, imgs}:any) {
 
-    const endDate = DateTime.now()
     const [timePassed,setTimePassed] = useState(new Map())
 
    useEffect(()=>{
@@ -17,9 +16,20 @@ export default function Home({data, imgs}:any) {
        })
 
        setTimePassed(newMap)
+       const interval = setInterval(() => {
+           const newMap = new Map();
+           data.forEach((streamer:Streamer)=> {
+               newMap.set(streamer.user_id,getTimePassed(streamer))
+           })
+
+           setTimePassed(newMap)
+       }, 1000);
+       return () => clearInterval(interval);
+
    },[])
 
     const getTimePassed = (streamer:Streamer) => {
+        const endDate = DateTime.now()
         const startedAtMillis = new Date(streamer.started_at).getTime()
         return endDate.diff(DateTime.fromMillis(startedAtMillis),['hours'])
             .toHuman({unitDisplay:'short'})
@@ -31,8 +41,13 @@ export default function Home({data, imgs}:any) {
               {data.map((streamer: Streamer,i: number) => {
                   return (
                       <div className='streamer' key={i} >
-                          <img src={imgs[streamer.user_id]}
-                               alt={`${streamer.user_login}'s profile image`}/>
+                          <div className='profile'>
+                              <img src={imgs[streamer.user_id]}
+                                   alt={`${streamer.user_login}'s profile image`}/>
+
+                              <h1 className='position'>{i+1}</h1>
+                          </div>
+
                           <a href={`https://twitch.tv/${streamer.user_login}`} target="_blank"
                              className='info'>
                               <h1>{streamer.user_name} </h1>

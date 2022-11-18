@@ -44,17 +44,30 @@ h1,h2{
   transform: scale(1.1);
 }
 
-.streamer:first-child > img {
+.streamer:first-child > .profile > img {
   box-shadow: 1px 3px 3px 3px gold;
 }
 
-.streamer:nth-child(2) > img {
+.streamer:nth-child(2) > .profile > img {
   box-shadow: 1px 3px 3px 3px silver;
 }
-.streamer:nth-child(3) > img {
+.streamer:nth-child(3) > .profile > img {
    box-shadow: 1px 3px 3px 3px saddlebrown;
  }
 
+.profile{
+  width: 100%;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.position{
+  font-size: 3em;
+  text-shadow: 3px 3px 3px black;
+  position: absolute;
+  top: 5px;
+  left: 16px;
+}
 .info{
   display: flex;
   justify-content: center;
@@ -73,6 +86,6 @@ h1,h2{
 }
 @media(max-width: 800px){
   .streamer > img {
-    width: 50%;
+    width: 70%;
   }
 }
