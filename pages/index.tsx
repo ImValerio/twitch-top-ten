@@ -1,6 +1,6 @@
 import {EXPIRE_LIMIT, getToken, tokenCache} from "./api/tokenCache";
 import {getTopTen} from "./api/top10";
-import Streamer from "./interfaces/Streamer";
+import Streamer from "../interfaces/Streamer";
 import {GetServerSidePropsContext} from "next";
 import {DateTime} from "ts-luxon";
 import {useEffect, useState} from "react";
