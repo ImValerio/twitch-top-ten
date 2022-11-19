@@ -4,6 +4,7 @@ import {Streamer} from "./interfaces/Streamer";
 import {GetServerSidePropsContext} from "next";
 import {DateTime} from "ts-luxon";
 import {useEffect, useState} from "react";
+import Image from "next/image";
 
 export default function Home({data, imgs}:any) {
     const [timePassed,setTimePassed] = useState(new Map());
@@ -33,21 +34,22 @@ export default function Home({data, imgs}:any) {
             .toHuman({unitDisplay:'short'})
     }
   return (
-      <div style={{textAlign:'center'}}>
+      <div className='main-container'>
           <h1 className='title'>TOP 10</h1>
           <div className='container'>
               {data.map((streamer: Streamer,i: number) => {
                   return (
                       <div className='streamer' key={i} >
                           <div className='profile'>
-                              <img src={imgs[streamer.user_id]}
-                                   alt={`${streamer.user_login}'s profile image`}/>
+                              <Image src={imgs[streamer.user_id]}
+                                     width={300} height={300}
+                                     alt={`${streamer.user_login}'s profile image`}/>
 
                               <h1 className='position'>{leaderBoardEmoji[i] ? leaderBoardEmoji[i] : `${i+1}`}</h1>
                           </div>
 
                           <a href={`https://twitch.tv/${streamer.user_login}`} target="_blank"
-                             className='info'>
+                             rel="noreferrer" className='info'>
                               <h1>{streamer.user_name} </h1>
                               <h2>👥️{streamer.viewer_count}</h2>
                               <p>{timePassed.get(streamer.user_id)}</p>
