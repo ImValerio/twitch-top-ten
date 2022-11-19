@@ -16,7 +16,7 @@ export default function Home({data, imgs}:any) {
            const interval = setInterval(calculateAndSetTime, 1000);
            return () => clearInterval(interval);
 
-           },
+           },[]
     )
 
     const calculateAndSetTime = ()=>{
