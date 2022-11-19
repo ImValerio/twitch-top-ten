@@ -41,8 +41,7 @@ export default function Home({data, imgs}:any) {
                   return (
                       <div className='streamer' key={i} >
                           <div className='profile'>
-                              <Image src={imgs[streamer.user_id]}
-                                     width={300} height={300}
+                              <img src={imgs[streamer.user_id]}
                                      alt={`${streamer.user_login}'s profile image`}/>
 
                               <h1 className='position'>{leaderBoardEmoji[i] ? leaderBoardEmoji[i] : `${i+1}`}</h1>
