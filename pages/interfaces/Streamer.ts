@@ -1,4 +1,4 @@
-export interface Streamer{
+export default interface Streamer{
     game_id: string,
     gane_name: string,
     id: string,
