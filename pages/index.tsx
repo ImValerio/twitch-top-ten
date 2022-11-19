@@ -5,6 +5,7 @@ import {GetServerSidePropsContext} from "next";
 import {DateTime} from "ts-luxon";
 import {useEffect, useState} from "react";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function Home({data, imgs}:any) {
     const [timePassed,setTimePassed] = useState(new Map());
@@ -35,6 +36,10 @@ export default function Home({data, imgs}:any) {
     }
   return (
       <div className='main-container'>
+          <Head>
+              <title>Twitch Top 10</title>
+              <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          </Head>
           <h1 className='title'>TOP 10</h1>
           <div className='container'>
               {data.map((streamer: Streamer,i: number) => {
