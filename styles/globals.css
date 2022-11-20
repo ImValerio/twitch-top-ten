@@ -47,6 +47,7 @@ h1,h2{
 }
 
 .streamer{
+  max-width: 300px;
   text-align: center;
   transition: all 0.5s;
 }
@@ -72,7 +73,10 @@ h1,h2{
   text-align: center;
   color: white;
 }
-
+.username{
+  max-width: 300px;
+  word-wrap: break-word;
+}
 .position{
   font-size: 3em;
   color:white;

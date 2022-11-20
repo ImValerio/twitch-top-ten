@@ -34,6 +34,8 @@ export default function Home({data, imgs}:any) {
         return endDate.diff(DateTime.fromMillis(startedAtMillis),['hours'])
             .toHuman({unitDisplay:'short'})
     }
+
+
   return (
       <div className='main-container'>
           <Head>
@@ -54,7 +56,7 @@ export default function Home({data, imgs}:any) {
 
                           <a href={`https://twitch.tv/${streamer.user_login}`} target="_blank"
                              rel="noreferrer" className='info'>
-                              <h1>{streamer.user_name} </h1>
+                              <h1 className='username' title={streamer.user_name}>{streamer.user_name} </h1>
                               <h2>👥️{streamer.viewer_count}</h2>
                               <p>{timePassed.get(streamer.user_id)}</p>
                           </a>
