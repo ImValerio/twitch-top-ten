@@ -65,7 +65,7 @@ export default function Home({data, imgs}:any) {
                   )
               })}
           </div>
-          <footer className='footer'>Created with ❤️ by&nbsp; <a href="https://valeriovaletta.it" style={{fontWeight: 'bold'}}>Valerio Valletta</a></footer>
+          <footer className='footer'>Created with ❤️ by&nbsp; <a href="https://valeriovalletta.it" style={{fontWeight: 'bold'}}>Valerio Valletta</a></footer>
       </div>
 
   )
