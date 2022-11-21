@@ -6,6 +6,7 @@ import {DateTime} from "ts-luxon";
 import {useEffect, useState} from "react";
 import Image from "next/image";
 import Head from "next/head";
+import "animate.css"
 
 export default function Home({data, imgs}:any) {
     const [timePassed,setTimePassed] = useState(new Map());
@@ -47,7 +48,7 @@ export default function Home({data, imgs}:any) {
               {data.map((streamer: Streamer,i: number) => {
                   return (
                       <div className='streamer' key={i} >
-                          <div className='profile'>
+                          <div className={`profile animate__animated ${leaderBoardEmoji[i] ? 'animate__tada': 'animate__fadeIn' }`}>
                               <img src={imgs[streamer.user_id]}
                                      alt={`${streamer.user_login}'s profile image`}/>
 
