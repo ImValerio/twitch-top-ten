@@ -1,6 +1,6 @@
 export default interface Streamer{
     game_id: string,
-    gane_name: string,
+    game_name: string,
     id: string,
     is_mature: boolean,
     language: string,

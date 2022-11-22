@@ -14,8 +14,9 @@ export const getTopTen = async () =>{
             "Client-id": `${process.env.CLIENT_ID}`
         }
     })
-
-    return await res.json();
+    const {data} = await res.json();
+    data.length = 10;
+    return data;
 }
 
 export default function handler(

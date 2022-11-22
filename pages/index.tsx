@@ -83,8 +83,7 @@ export async function getServerSideProps({req,res}:GetServerSidePropsContext) {
     if(!tokenCache.token ||  (TIME_PASSED > EXPIRE_LIMIT))
         tokenCache.token = await getToken();
 
-   let {data} = await getTopTen();
-    data.length = 10;
+   let data = await getTopTen();
 
     const idList = new Set<string>();
 
