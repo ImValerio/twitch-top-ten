@@ -4,8 +4,9 @@ import Leaderboard from "../../models/Leaderboard";
 import {getTopTen} from "./top10";
 import {getToken, tokenCache} from "./tokenCache";
 import Streamer from "../../interfaces/Streamer";
+import StreamerCollection from '../../models/Streamer';
 
-const scoreLeaderboard = [1, 0.6, 0.3]
+const scoreLeaderboard = [3, 1.75, 1];
 
 export default async function handler(
     req: NextApiRequest,
@@ -21,17 +22,19 @@ export default async function handler(
            let topThree = await getTopTen();
            topThree.length = 3;
 
-            const pointList = topThree.map((streamer:Streamer, i: number) => {
+           const pointList = topThree.map((streamer:Streamer, i: number) => {
                return {
                    idStreamer: streamer.user_id,
                    points: scoreLeaderboard[i],
                    createdAt: new Date(),
                }
-            })
+            });
 
-            await Leaderboard.insertMany(pointList);
-           res.status(200).json({ pointList,success: true});
-
+           await Leaderboard.insertMany(pointList);
+           for (const streamer of pointList) {
+               await StreamerCollection.findOneAndUpdate({id:streamer.idStreamer},{$inc: {'totalPoints':streamer.points}},{upsert: true})
+           }
+            res.status(200).json({ pointList,success: true});
         } catch ({message}) {
             res.status(500).json({ statusCode: 500, message});
         }
