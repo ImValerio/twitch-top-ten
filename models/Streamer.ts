@@ -16,7 +16,6 @@ const streamer = new Schema({
     }
 });
 
-mongoose.models = {};
 
 const Streamer = mongoose.model('streamers', streamer);
 
