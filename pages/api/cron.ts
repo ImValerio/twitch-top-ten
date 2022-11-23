@@ -8,6 +8,7 @@ import StreamerCollection from '../../models/Streamer';
 
 const scoreLeaderboard = [3, 1.75, 1];
 
+// Allow date between 12pm - 2am
 const isValidDate = ()=>{
     const startValidDate = new Date().setHours(12,0,0,0);
     const endValidDate = new Date().setHours(26,0,0,0);
@@ -38,8 +39,8 @@ export default async function handler(
             });
 
            await Leaderboard.insertMany(pointList);
-           for (const streamer of pointList) {
-               await StreamerCollection.findOneAndUpdate({id:streamer.idStreamer},{$inc: {'totalPoints':streamer.points}},{upsert: true})
+           for (const [i,streamer] of pointList.entries()) {
+               await StreamerCollection.findOneAndUpdate({id:streamer.idStreamer },{$inc: {'totalPoints':streamer.points},username: topThree[i].user_name},{upsert: true})
            }
             res.status(200).json({ pointList,success: true});
         } catch ({message}) {

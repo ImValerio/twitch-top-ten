@@ -6,6 +6,10 @@ const streamer = new Schema({
         type: String,
         required: true,
     },
+    username:{
+        type: String,
+        required: true,
+    },
     totalPoints: {
         type: Number,
         required: true,
