@@ -96,7 +96,7 @@ export async function getServerSideProps({req,res}:GetServerSidePropsContext) {
 }
 
 
-const getProfileImgByIDS = async (ids: Set<string>) => {
+export const getProfileImgByIDS = async (ids: Set<string>) => {
     let URL = 'https://api.twitch.tv/helix/users?';
     Array.from(ids).forEach((id, i: number) => {
         i == 0 ? URL += `id=${id}` : URL += `&id=${id}`;
