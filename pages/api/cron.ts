@@ -8,11 +8,18 @@ import StreamerCollection from '../../models/Streamer';
 
 const scoreLeaderboard = [3, 1.75, 1];
 
+const isValidDate = ()=>{
+    const startValidDate = new Date().setHours(12,0,0,0);
+    const endValidDate = new Date().setHours(26,0,0,0);
+    const dateNow = new Date().getTime();
+    return ((dateNow >= startValidDate) && (dateNow <= endValidDate))
+}
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
 ) {
-    if (req.method === 'POST') {
+    if (isValidDate() && req.method === 'POST') {
         try {
            if(!isAuth(req,res))
                throw({message:'Not authorized'});
