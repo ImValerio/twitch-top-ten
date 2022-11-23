@@ -18,7 +18,7 @@ const leaderboard = new Schema({
 
 },{collection: 'leaderboard'});
 
-mongoose.models = {};
+// mongoose.models = {};
 
 const Leaderboard = mongoose.model('leaderboard', leaderboard);
 
