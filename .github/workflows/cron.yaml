@@ -1,7 +1,7 @@
 name: hour-cron
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0,30 * * * *'
 jobs:
   cron:
     runs-on: ubuntu-latest
@@ -10,4 +10,4 @@ jobs:
         run: |
           curl --request POST \
           --url 'https://twitch-top-ten.vercel.app/api/cron' \
-          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET_KEY }}'
+          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'
