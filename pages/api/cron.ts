@@ -26,6 +26,7 @@ export default async function handler(
                throw({message:'Not authorized'});
 
            await connectDB();
+
            tokenCache.token = await getToken();
            let topThree = await getTopTen();
            topThree.length = 3;

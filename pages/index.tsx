@@ -7,8 +7,11 @@ import {useEffect, useState} from "react";
 import Image from "next/image";
 import Head from "next/head";
 import "animate.css"
+import {useRouter} from "next/router";
 
 export default function Home({data, imgs}:any) {
+
+    const router = useRouter();
     const [timePassed,setTimePassed] = useState(new Map());
     const leaderBoardEmoji = [
         '🥇', '🥈', '🥉'
@@ -65,7 +68,7 @@ export default function Home({data, imgs}:any) {
                   )
               })}
           </div>
-          <footer className='footer'>Created with ❤️ by&nbsp; <a href="https://valeriovalletta.it" style={{fontWeight: 'bold'}}>Valerio Valletta</a></footer>
+          <footer className='footer'>Created with ❤️ by&nbsp; <a href="https://valeriovalletta.it" style={{fontWeight: 'bold'}}>Valerio Valletta</a> - <span className='leaderboard-link' onClick={()=> router.push('/leaderboard')}>Leaderboard</span></footer>
       </div>
 
   )

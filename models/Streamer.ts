@@ -17,6 +17,7 @@ const streamer = new Schema({
 });
 
 
-const Streamer = mongoose.model('streamers', streamer);
 
-export default Streamer;
+export default  mongoose.models['streamers']
+    ? mongoose.model('streamers')
+    : mongoose.model('streamers', streamer);

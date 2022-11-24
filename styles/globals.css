@@ -104,6 +104,23 @@ h1,h2{
   padding: 1em;
 }
 
+.btn-red{
+  background: transparent;
+  border: 2px solid red;
+  padding: 0.3em 0.6em;
+  margin: 1em;
+  color: red;
+  font-family: 'Montserrat',sans-serif;
+  font-size: 1.5em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-red:hover{
+  background: red;
+  color: black;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

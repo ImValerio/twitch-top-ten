@@ -20,6 +20,6 @@ const leaderboard = new Schema({
 
 // mongoose.models = {};
 
-const Leaderboard = mongoose.model('leaderboard', leaderboard);
+const Leaderboard =  mongoose.model('leaderboard', leaderboard);
 
 export default Leaderboard;
