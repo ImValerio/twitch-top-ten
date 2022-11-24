@@ -41,6 +41,7 @@ export default async function handler(
 
            await Leaderboard.insertMany(pointList);
            for (const [i,streamer] of pointList.entries()) {
+               // @ts-ignore
                await StreamerCollection.findOneAndUpdate({id:streamer.idStreamer },{$inc: {'totalPoints':streamer.points},username: topThree[i].user_name},{upsert: true})
            }
             res.status(200).json({ pointList,success: true});
