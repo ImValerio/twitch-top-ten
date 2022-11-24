@@ -1,4 +1,3 @@
-import Head from "next/head";
 import {GetServerSidePropsContext} from "next";
 import { useRouter } from 'next/router'
 import connectDB from "../lib/dbConnect";
@@ -63,5 +62,5 @@ const getLeaderboard = async ()=> {
 
     await connectDB();
 
-    return StreamerModel.find().select('-_id').sort('-totalPoints').lean();
+    return StreamerModel.find().select('-_id').sort('-totalPoints').limit(20).lean();
 }
