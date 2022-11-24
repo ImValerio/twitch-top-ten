@@ -62,5 +62,6 @@ const getLeaderboard = async ()=> {
 
     await connectDB();
 
+    // @ts-ignore
     return StreamerModel.find().select('-_id').sort('-totalPoints').limit(20).lean();
 }
