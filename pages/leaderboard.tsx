@@ -13,7 +13,7 @@ export default function Leaderboard({data}:any) {
     return (
         <div className='main-container'>
             <Head>
-                <title>Twitch Top 10</title>
+                <title>Leaderboard</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <h1 className='title-leaderboard'>Leaderboard</h1>
