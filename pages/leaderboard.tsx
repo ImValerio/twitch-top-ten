@@ -2,6 +2,7 @@ import {GetServerSidePropsContext} from "next";
 import { useRouter } from 'next/router'
 import connectDB from "../lib/dbConnect";
 import StreamerModel from "../models/Streamer";
+import Head from "next/head";
 
 export default function Leaderboard({data}:any) {
     const router = useRouter();
@@ -11,8 +12,11 @@ export default function Leaderboard({data}:any) {
 
     return (
         <div className='main-container'>
-
-            <h1 className='title'>Leaderboard</h1>
+            <Head>
+                <title>Twitch Top 10</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <h1 className='title-leaderboard'>Leaderboard</h1>
             <div className='container'>
                 <table style={{width:'100%',textAlign: 'center', fontSize: '1.2em'}}>
 

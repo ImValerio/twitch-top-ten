@@ -21,7 +21,7 @@ h1,h2{
   margin: 0;
 }
 
-.title{
+.title,.title-leaderboard{
   font-size: 5em;
   font-weight: bold;
   letter-spacing: 0.2em;
@@ -94,6 +94,12 @@ h1,h2{
   font-family: 'Montserrat', serif;
 }
 
+.leaderboard-link{
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: 'Montserrat', serif;
+}
+
 .footer{
   width: 100%;
   border-top: 1px solid white;
@@ -102,6 +108,11 @@ h1,h2{
   justify-content: center;
   align-items: center;
   padding: 1em;
+}
+
+.footer > p {
+  margin: 0;
+  padding: 0;
 }
 
 .btn-red{
@@ -131,6 +142,9 @@ h1,h2{
   }
 }
 @media(max-width: 800px){
+  .title-leaderboard{
+    font-size: 3.5em;
+  }
   .streamer > .profile > img {
     width: 70%;
   }

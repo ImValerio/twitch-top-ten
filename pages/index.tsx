@@ -10,7 +10,7 @@ import {useRouter} from "next/router";
 
 export default function Home({data, imgs}:any) {
 
-    // const router = useRouter();
+    const router = useRouter();
     const [timePassed,setTimePassed] = useState(new Map());
     const leaderBoardEmoji = [
         '🥇', '🥈', '🥉'
@@ -67,9 +67,13 @@ export default function Home({data, imgs}:any) {
                   )
               })}
           </div>
-          <footer className='footer'>Created with ❤️ by&nbsp; <a href="https://valeriovalletta.it" style={{fontWeight: 'bold'}}>Valerio Valletta</a></footer>
+          <footer className='footer'>
+              <p>Created with ❤️ by&nbsp; <a href="https://valeriovalletta.it">Valerio Valletta</a>
+             &nbsp;-&nbsp;
+              <span className='leaderboard-link' onClick={()=> router.push('/leaderboard')}>Leaderboard</span>
+              </p>
+          </footer>
       </div>
-      // - <span className='leaderboard-link' onClick={()=> router.push('/leaderboard')}>Leaderboard</span>
   )
 }
 
