@@ -4,4 +4,5 @@ This web app shows top 10 italian streamer (ordered by viewer count) using Twitc
 
 **Demo:** https://twitch-top-ten.vercel.app 
 ## Extra packages
-- Luxon
+- luxon
+- nextjs-progressbar
