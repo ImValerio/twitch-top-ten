@@ -157,4 +157,8 @@ h1,h2{
     top: 3px;
     left: 56px;
   }
+
+  .footer{
+    font-size: 0.9em;
+  }
 }
