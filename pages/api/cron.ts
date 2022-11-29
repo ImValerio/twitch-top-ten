@@ -46,7 +46,7 @@ export default async function handler(
            const pointList = topThree.map((streamer:Streamer, i: number) => {
                return {
                    idStreamer: streamer.user_id,
-                   points: scoreLeaderboard[dayOrNight],
+                   points: scoreLeaderboard[dayOrNight][i],
                    createdAt: new Date(),
                }
             });
