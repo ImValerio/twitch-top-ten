@@ -6,7 +6,10 @@ import {getToken, tokenCache} from "./tokenCache";
 import Streamer from "../../interfaces/Streamer";
 import StreamerCollection from '../../models/Streamer';
 
-const scoreLeaderboard = [3, 1.75, 1];
+const scoreLeaderboard = {
+    "day":[3, 1.75, 1],
+    "night": [3.9, 2.27, 1.3]
+};
 
 // Allow date between 12pm - 2am
 const isValidDate = ()=>{
@@ -14,6 +17,13 @@ const isValidDate = ()=>{
     const endValidDate = new Date().setHours(26,0,0,0);
     const dateNow = new Date().getTime();
     return ((dateNow >= startValidDate) && (dateNow <= endValidDate))
+}
+
+const isNight = ()=>{
+    const dateNow = new Date().getTime()
+    const nightStart = new Date().setHours(21,0,0,0);
+
+    return dateNow >= nightStart
 }
 
 export default async function handler(
@@ -31,10 +41,12 @@ export default async function handler(
            let topThree = await getTopTen();
            topThree.length = 3;
 
+           const dayOrNight = isNight() ? "night" : "day";
+
            const pointList = topThree.map((streamer:Streamer, i: number) => {
                return {
                    idStreamer: streamer.user_id,
-                   points: scoreLeaderboard[i],
+                   points: scoreLeaderboard[dayOrNight],
                    createdAt: new Date(),
                }
             });
