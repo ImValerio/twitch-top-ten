@@ -33,7 +33,7 @@ export default function Leaderboard({data}:any) {
                             <tr key={i}>
                                 <td>{leaderBoardEmoji[i] ? leaderBoardEmoji[i] : `${i+1}`}</td>
                                 <td>{streamer.username}</td>
-                                <td>{streamer.totalPoints}</td>
+                                <td>{streamer.totalPoints.toFixed(1)}</td>
                             </tr>
                         )
                     })

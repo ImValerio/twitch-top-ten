@@ -84,20 +84,20 @@ export async function getServerSideProps({req,res}:GetServerSidePropsContext) {
         'public, s-maxage=180, stale-while-revalidate=300'
     )
 
-    const TIME_PASSED = new Date().getTime() - tokenCache.timestamp.getTime()
+    const TIME_PASSED = new Date().getTime() - tokenCache.timestamp.getTime();
 
     if(!tokenCache.token ||  (TIME_PASSED > EXPIRE_LIMIT))
         tokenCache.token = await getToken();
 
    let data = await getTopTen();
 
-    const idList = new Set<string>();
+   const idList = new Set<string>();
 
-    data.forEach((streamer:Streamer) => idList.add(streamer.user_id))
+   data.forEach((streamer:Streamer) => idList.add(streamer.user_id));
 
-    const imgsMap = await getProfileImgByIDS(idList);
-    // Pass data to the page via props
-    return { props: { data, imgs: Object.fromEntries(imgsMap) } }
+   const imgsMap = await getProfileImgByIDS(idList);
+
+   return { props: { data, imgs: Object.fromEntries(imgsMap) } }
 
 }
 
