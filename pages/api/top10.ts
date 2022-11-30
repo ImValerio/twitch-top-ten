@@ -10,16 +10,22 @@ type Data = {
 }
 
 export const getTopTen = async () =>{
-    const res: Response = await fetch('https://api.twitch.tv/helix/streams?language=it',{
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${tokenCache.token}`,
-            "Client-id": `${process.env.CLIENT_ID}`
-        }
-    })
-    const {data} = await res.json();
-    data.length = 10;
-    return data;
+    try{
+        const res: Response = await fetch('https://api.twitch.tv/helix/streams?language=it',{
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${tokenCache.token}`,
+                "Client-id": `${process.env.CLIENT_ID}`
+            }
+        })
+        const {data} = await res.json();
+        data.length = 10;
+        return data;
+    }catch (error){
+
+        return []
+    }
+
 }
 
 export default function handler(
