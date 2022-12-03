@@ -46,6 +46,9 @@ export default function Home({data, imgs}:any) {
               <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           </Head>
           <h1 className='title'>TOP 10</h1>
+          <a href="#" className="float" onClick={()=> router.push('/leaderboard')}>
+              <img src={'bar-chart.svg'} alt={'svg chart image'}/>
+          </a>
           <div className='container'>
               {data.map((streamer: Streamer,i: number) => {
                   return (
@@ -78,26 +81,31 @@ export default function Home({data, imgs}:any) {
 }
 
 export async function getServerSideProps({req,res}:GetServerSidePropsContext) {
-    // Fetch data from external API
-    res.setHeader(
-        'Cache-Control',
-        'public, s-maxage=180, stale-while-revalidate=300'
-    )
+    try{
+        // Fetch data from external API
+        res.setHeader(
+            'Cache-Control',
+            'public, s-maxage=180, stale-while-revalidate=300'
+        )
 
-    const TIME_PASSED = new Date().getTime() - tokenCache.timestamp.getTime();
+        const TIME_PASSED = new Date().getTime() - tokenCache.timestamp.getTime();
 
-    if(!tokenCache.token ||  (TIME_PASSED > EXPIRE_LIMIT))
-        tokenCache.token = await getToken();
+        if(!tokenCache.token ||  (TIME_PASSED > EXPIRE_LIMIT))
+            tokenCache.token = await getToken();
 
-   let data = await getTopTen();
+        let data = await getTopTen();
 
-   const idList = new Set<string>();
+        const idList = new Set<string>();
 
-   data.forEach((streamer:Streamer) => idList.add(streamer.user_id));
+        data.forEach((streamer:Streamer) => idList.add(streamer.user_id));
 
-   const imgsMap = await getProfileImgByIDS(idList);
+        const imgsMap = await getProfileImgByIDS(idList);
 
-   return { props: { data, imgs: Object.fromEntries(imgsMap) } }
+        return { props: { data, imgs: Object.fromEntries(imgsMap) } }
+    }catch (error){
+        return {props: {data: [], imgs: []}}
+    }
+
 
 }
 
