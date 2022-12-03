@@ -46,7 +46,7 @@ export default function Home({data, imgs}:any) {
               <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           </Head>
           <h1 className='title'>TOP 10</h1>
-          <a href="#" className="float" onClick={()=> router.push('/leaderboard')}>
+          <a href="#" className="float animate__animated animate__fadeInRight" onClick={()=> router.push('/leaderboard')}>
               <img src={'bar-chart.svg'} alt={'svg chart image'}/>
           </a>
           <div className='container'>
@@ -71,10 +71,7 @@ export default function Home({data, imgs}:any) {
               })}
           </div>
           <footer className='footer'>
-              <p>Created with ❤️ by&nbsp; <a href="https://valeriovalletta.it">Valerio Valletta</a>
-             &nbsp;-&nbsp;
-              <span className='leaderboard-link' onClick={()=> router.push('/leaderboard')}>Leaderboard</span>
-              </p>
+              <p>Created with ❤️ by&nbsp; <a href="https://valeriovalletta.it">Valerio Valletta</a></p>
           </footer>
       </div>
   )

@@ -18,7 +18,7 @@ export default function Leaderboard({data}:any) {
             </Head>
             <h1 className='title-leaderboard'>Leaderboard</h1>
             <div className='container'>
-                <table style={{width:'100%',textAlign: 'center', fontSize: '1.2em'}}>
+                <table className={'table'}>
 
                     <thead>
                         <tr>
