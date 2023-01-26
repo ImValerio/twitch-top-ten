@@ -3,12 +3,10 @@ import { useRouter } from 'next/router'
 import connectDB from "../lib/dbConnect";
 import StreamerModel from "../models/Streamer";
 import Head from "next/head";
+import { leaderBoardEmoji } from "../lib/utils";
 
 export default function Leaderboard({data}:any) {
-    const router = useRouter();
-    const leaderBoardEmoji = [
-        '🥇', '🥈', '🥉'
-    ];
+    const router = useRouter(); 
 
     return (
         <div className='main-container'>

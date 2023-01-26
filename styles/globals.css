@@ -46,6 +46,13 @@ h1,h2{
   padding: 1em;
 }
 
+.streamers-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .streamer{
   max-width: 300px;
   text-align: center;

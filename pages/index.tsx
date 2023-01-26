@@ -7,14 +7,12 @@ import {useEffect, useState} from "react";
 import Head from "next/head";
 import "animate.css"
 import {useRouter} from "next/router";
+import StreamerCard from "../components/StreamerCard";
 
 export default function Home({data, imgs}:any) {
 
     const router = useRouter();
-    const [timePassed,setTimePassed] = useState(new Map());
-    const leaderBoardEmoji = [
-        '🥇', '🥈', '🥉'
-    ]
+    const [timePassed,setTimePassed] = useState(new Map()); 
     useEffect(()=>{
            calculateAndSetTime();
            const interval = setInterval(calculateAndSetTime, 1000);
@@ -46,28 +44,21 @@ export default function Home({data, imgs}:any) {
               <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           </Head>
           <h1 className='title'>TOP 10</h1>
-          <a href="#" className="float animate__animated animate__fadeInRight" onClick={()=> router.push('/leaderboard')}>
+          <a className="float animate__animated animate__fadeInRight" onClick={()=> router.push('/leaderboard')}>
               <img src={'bar-chart.svg'} alt={'svg chart image'}/>
           </a>
           <div className='container'>
               {data.map((streamer: Streamer,i: number) => {
-                  return (
-                      <div className='streamer' key={i} >
-                          <div className={`profile animate__animated ${leaderBoardEmoji[i] ? 'animate__tada': 'animate__fadeIn' }`}>
-                              <img src={imgs[streamer.user_id]}
-                                     alt={`${streamer.user_login}'s profile image`}/>
-
-                              <h1 className='position'>{leaderBoardEmoji[i] ? leaderBoardEmoji[i] : `${i+1}`}</h1>
-                          </div>
-
-                          <a href={`https://twitch.tv/${streamer.user_login}`} target="_blank"
-                             rel="noreferrer" className='info'>
-                              <h1 className='username' title={streamer.title}>{streamer.user_name} </h1>
-                              <h2>👥️{streamer.viewer_count}</h2>
-                              <p>{timePassed.get(streamer.user_id)}</p>
-                          </a>
-                      </div>
-                  )
+                    if(i < 3)
+                        return <StreamerCard key={streamer.id} index={i} streamer={streamer} imgs={imgs} timePassed={timePassed}/>
+                    
+                    return (
+    <div className="streamers-container">
+                <h2>{i+1}. {streamer.user_name}</h2>
+                <h3>️👥{streamer.viewer_count}</h3>
+            </div>
+                        )
+                  
               })}
           </div>
           <footer className='footer'>
