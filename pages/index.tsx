@@ -46,9 +46,9 @@ export default function Home({data, imgs}:any) {
               <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           </Head>
           <h1 className='title'>TOP 10</h1>
-          <a href="#" className="float animate__animated animate__fadeInRight" onClick={()=> router.push('/leaderboard')}>
+          <button className="float animate__animated animate__fadeInRight" onClick={()=> router.push('/leaderboard')}>
               <img src={'bar-chart.svg'} alt={'svg chart image'}/>
-          </a>
+          </button>
           <div className='container'>
               {data.map((streamer: Streamer,i: number) => {
                   return (
