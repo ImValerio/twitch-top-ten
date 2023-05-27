@@ -32,11 +32,8 @@ const Graph = ({ data }: any) => {
             },
         },
     };
+    
     useEffect(() => {
-        console.log("DATA: ", data);
-    });
-    useEffect(() => {
-        console.log("DATA: ", data);
         const points:any = [];
         const datasets: any = [];
         const labels = data.map((streamer: any) => {
@@ -54,7 +51,7 @@ const Graph = ({ data }: any) => {
         });
     }, [data]);
 
-    return <Bar options={options} data={graphData} />;
+    return <Bar options={options} data={graphData} className="graph"/>;
 };
 
 export default Graph;

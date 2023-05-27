@@ -84,7 +84,6 @@ export async function getServerSideProps({
     );
 
     let data: any = await getLeaderboard();
-    console.log(typeof data);
     // Pass data to the page via props
     return { props: { data } };
 }

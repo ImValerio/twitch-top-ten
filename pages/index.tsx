@@ -52,7 +52,7 @@ export default function Home({ data, imgs }: any) {
             </a>
             <div className="container">
                 {data.map((streamer: Streamer, i: number) => {
-                    if (i < 3)
+                    if (i < 6)
                         return (
                             <StreamerCard
                                 key={streamer.id}
