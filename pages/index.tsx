@@ -20,6 +20,7 @@ export default function Home({ data, imgs }: any) {
 
     const calculateAndSetTime = () => {
         const newMap = new Map();
+
         data.forEach((streamer: Streamer) => {
             newMap.set(streamer.user_id, getTimePassed(streamer));
         });
@@ -133,4 +134,6 @@ export const getProfileImgByIDS = async (ids: Set<string>) => {
     data.forEach((e: any) => profileImgMap.set(e.id, e.profile_image_url));
 
     return profileImgMap;
+
 };
+
