@@ -166,6 +166,8 @@ h1,h2{
 }
 
 .graph{
+
+  max-width: 1200px;
   margin: 1em;
 }
 
